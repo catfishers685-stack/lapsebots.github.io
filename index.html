@@ -431,6 +431,178 @@
             margin-top: 10px;
         }
         
+        /* Pricing Section */
+        .pricing-section {
+            margin: 80px 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .pricing-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #a0a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .pricing-price small {
+            font-size: 1rem;
+            color: #8a8f9c;
+        }
+        
+        .pricing-description {
+            color: #8a8f9c;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            padding: 0 20px;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-features i {
+            color: #4caf50;
+            font-size: 1rem;
+        }
+        
+        .pricing-button {
+            display: inline-block;
+            padding: 12px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .pricing-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: rgba(255,255,255,0.02);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .about-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .about-description {
+            color: #8a8f9c;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .owner-section {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+        
+        .owner-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .owner-tag {
+            color: #8a8f9c;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .owner-warning {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
         /* Join Section */
         .join-section {
             text-align: center;
@@ -490,6 +662,15 @@
             transform: translateY(-2px);
         }
         
+        .invite-link {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #667eea;
+            margin-top: 10px;
+        }
+        
         /* Footer */
         .footer {
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -523,15 +704,6 @@
             color: #667eea;
         }
         
-        .invite-link {
-            background: rgba(255,255,255,0.05);
-            padding: 10px;
-            border-radius: 5px;
-            font-family: monospace;
-            color: #667eea;
-            margin-top: 10px;
-        }
-        
         /* Responsive */
         @media (max-width: 1024px) {
             .hero {
@@ -548,6 +720,7 @@
             }
             
             .features-grid,
+            .pricing-grid,
             .modes-grid,
             .commands-grid,
             .bot-showcase,
@@ -604,6 +777,7 @@
             </div>
             <div class="nav-links">
                 <a href="#features" style="color: #fff; text-decoration: none;">Features</a>
+                <a href="#pricing" style="color: #fff; text-decoration: none;">Pricing</a>
                 <a href="#commands" style="color: #fff; text-decoration: none;">Commands</a>
                 <a href="#showcase" style="color: #fff; text-decoration: none;">Showcase</a>
                 <a href="https://discord.gg/GsHpSVcwTN" class="discord-btn" target="_blank">
@@ -639,9 +813,9 @@
                         <i class="fab fa-discord"></i>
                         Join Discord
                     </a>
-                    <a href="#features" style="background: rgba(255,255,255,0.1); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-chevron-down"></i>
-                        Learn More
+                    <a href="#pricing" style="background: rgba(255,255,255,0.1); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-tag"></i>
+                        View Pricing
                     </a>
                 </div>
             </div>
@@ -726,6 +900,86 @@
             </div>
         </section>
         
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing-section">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p style="text-align: center; color: #8a8f9c; margin-bottom: 40px;">Choose the perfect bot for your Discord server</p>
+            
+            <div class="pricing-grid">
+                <!-- Basic Bot -->
+                <div class="pricing-card">
+                    <div class="pricing-badge">BASIC</div>
+                    <div class="pricing-name">Basic Bot</div>
+                    <div class="pricing-price">£5 <small>/ one-time</small></div>
+                    <div class="pricing-description">Perfect for small servers just getting started</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Basic prefix (!)</li>
+                        <li><i class="fas fa-check"></i> 5-10 custom commands</li>
+                        <li><i class="fas fa-check"></i> Basic moderation</li>
+                        <li><i class="fas fa-check"></i> 24/7 hosting</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                    </ul>
+                    <a href="https://discord.gg/GsHpSVcwTN" class="pricing-button">Get Started</a>
+                </div>
+                
+                <!-- Premium Bot (Most Popular) -->
+                <div class="pricing-card popular">
+                    <div class="pricing-badge">PREMIUM</div>
+                    <div class="pricing-name">Premium Bot</div>
+                    <div class="pricing-price">£15 <small>/ one-time</small></div>
+                    <div class="pricing-description">Our most popular choice for growing communities</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Any prefix you want</li>
+                        <li><i class="fas fa-check"></i> 20 commands of your choice</li>
+                        <li><i class="fas fa-check"></i> Economy system included</li>
+                        <li><i class="fas fa-check"></i> Gambling games (slots, blackjack)</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> 24/7 hosting from @2pyr's PC</li>
+                    </ul>
+                    <a href="https://discord.gg/GsHpSVcwTN" class="pricing-button">Get Started</a>
+                </div>
+                
+                <!-- Highest Bot -->
+                <div class="pricing-card">
+                    <div class="pricing-badge">ULTIMATE</div>
+                    <div class="pricing-name">Ultimate Bot</div>
+                    <div class="pricing-price">£30 <small>/ one-time</small></div>
+                    <div class="pricing-description">The complete package for large communities</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Any prefix you want</li>
+                        <li><i class="fas fa-check"></i> 50+ custom commands</li>
+                        <li><i class="fas fa-check"></i> Full economy & leveling</li>
+                        <li><i class="fas fa-check"></i> All gambling games</li>
+                        <li><i class="fas fa-check"></i> Custom game development</li>
+                        <li><i class="fas fa-check"></i> 24/7 dedicated hosting</li>
+                        <li><i class="fas fa-check"></i> VIP support & updates</li>
+                    </ul>
+                    <a href="https://discord.gg/GsHpSVcwTN" class="pricing-button">Get Started</a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: #8a8f9c; margin-top: 30px; font-size: 0.9rem;">
+                <i class="fas fa-info-circle"></i> All bots are hosted 24/7 from @2pyr's personal PC. One-time payment, lifetime hosting!
+            </p>
+        </section>
+        
+        <!-- About Section -->
+        <section class="about-section">
+            <h2 class="about-title">What is Lapse TM?</h2>
+            <p class="about-description">
+                Lapse TM is a dedicated team that develops premium Discord bots. We specialize in creating high-quality, custom bots with advanced features, gambling systems, and economy management. All our bots are hosted 24/7 from @2pyr's personal PC for maximum reliability and performance.
+            </p>
+            
+            <div class="owner-section">
+                <div class="owner-name">2pyr (aka Lapse)</div>
+                <div class="owner-tag">Founder & Lead Developer</div>
+                <p style="color: #8a8f9c; margin-bottom: 20px;">⚠️ There are no other team members at the moment. If anyone claims to be part of Lapse TM, DM me directly!</p>
+                <div class="owner-warning">
+                    <i class="fas fa-exclamation-triangle"></i> Warning: If someone claims to be from Lapse TM besides @2pyr, they are impersonating. Always verify with me directly!
+                </div>
+            </div>
+        </section>
+        
         <!-- Commands Showcase -->
         <section id="commands" class="commands-showcase">
             <h2 class="section-title" style="margin-bottom: 30px;">Bot Commands</h2>
@@ -767,144 +1021,4 @@
                     <div>7 Lanes</div>
                     <div>75% Success</div>
                     <div>0.6x per lane</div>
-                </div>
-                
-                <div class="mode-card">
-                    <div class="mode-name mode-hard">🦃 HARD</div>
-                    <div>9 Lanes</div>
-                    <div>65% Success</div>
-                    <div>0.8x per lane</div>
-                </div>
-                
-                <div class="mode-card">
-                    <div class="mode-name mode-expert">🦅 EXPERT</div>
-                    <div>12 Lanes</div>
-                    <div>50% Success</div>
-                    <div>1.2x per lane</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Bot Showcase -->
-        <section id="showcase" class="bot-showcase">
-            <div class="bot-messages">
-                <div class="message">
-                    <div class="message-header">
-                        <span class="message-author">User</span>
-                        <span class="message-time">Today at 11:43 AM</span>
-                    </div>
-                    <div class="message-content">$chicken hard 100</div>
-                </div>
-                
-                <div class="message">
-                    <div class="message-header">
-                        <span class="message-author">Lapse's Gambling Bot</span>
-                        <span class="message-time">Now</span>
-                    </div>
-                    <div class="message-content">
-                        <div class="embed-preview">
-                            <strong>🐔 CHICKEN - HARD</strong><br>
-                            ✅ Crossed to lane 3!<br>
-                            Current Value: $240<br>
-                            Next Lane: 62% chance
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="message">
-                    <div class="message-header">
-                        <span class="message-author">User</span>
-                        <span class="message-time">Today at 11:45 AM</span>
-                    </div>
-                    <div class="message-content">$slots 100</div>
-                </div>
-                
-                <div class="message">
-                    <div class="message-header">
-                        <span class="message-author">Lapse's Gambling Bot</span>
-                        <span class="message-time">Now</span>
-                    </div>
-                    <div class="message-content">
-                        <div class="embed-preview">
-                            <strong>🎰 SLOT MACHINE</strong><br>
-                            🍒 🍒 🍒<br>
-                            <span style="color: #4caf4f;">JACKPOT! +$1,000</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <h2 style="font-size: 2rem; margin-bottom: 20px;">Experience the <span style="color: #667eea;">Ultimate</span> Gambling Bot</h2>
-                <p style="color: #8a8f9c; margin-bottom: 30px;">Join our Discord server to test the bot yourself! With fully functional economy, multiple games, and regular updates, it's the perfect addition to any server.</p>
-                
-                <div style="background: rgba(255,255,255,0.03); border-radius: 15px; padding: 25px;">
-                    <h3 style="margin-bottom: 15px;">✨ Features Include:</h3>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 10px;">✓ Fully functional gambling bot</li>
-                        <li style="margin-bottom: 10px;">✓ Persistent economy system</li>
-                        <li style="margin-bottom: 10px;">✓ Multiple difficulty modes</li>
-                        <li style="margin-bottom: 10px;">✓ Admin/Botmaker commands</li>
-                        <li style="margin-bottom: 10px;">✓ 24/7 uptime</li>
-                        <li style="margin-bottom: 10px;">✓ Regular updates & support</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Join Section -->
-        <section class="join-section">
-            <h2>Ready to Join?</h2>
-            <p>Click the button below to join our Discord community!</p>
-            
-            <div class="join-buttons">
-                <a href="https://discord.gg/GsHpSVcwTN" class="join-button join-discord" target="_blank">
-                    <i class="fab fa-discord"></i>
-                    Join Discord Server
-                </a>
-                <button class="join-button join-copy" onclick="copyInvite()">
-                    <i class="fas fa-copy"></i>
-                    Copy Invite Link
-                </button>
-            </div>
-            
-            <div class="invite-link" id="inviteLink">
-                discord.gg/GsHpSVcwTN
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-section">
-                <h4>Lapse's Bots</h4>
-                <p style="color: #8a8f9c;">Professional Discord bot development and custom solutions.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#commands">Commands</a></li>
-                    <li><a href="#showcase">Showcase</a></li>
-                    <li><a href="https://discord.gg/GsHpSVcwTN">Discord</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <ul class="footer-links">
-                    <li><i class="fab fa-discord" style="margin-right: 10px;"></i> Discord: Lapse.</li>
-                    <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> Discord Server</li>
-                </ul>
-            </div>
-        </footer>
-    </div>
-    
-    <script>
-        function copyInvite() {
-            navigator.clipboard.writeText('https://discord.gg/GsHpSVcwTN');
-            alert('Invite link copied to clipboard!');
-        }
-    </script>
-</body>
-</html>
+                </div
