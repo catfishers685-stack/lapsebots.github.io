@@ -431,6 +431,65 @@
             margin-top: 10px;
         }
         
+        /* Join Section */
+        .join-section {
+            text-align: center;
+            padding: 80px 0;
+            background: rgba(88, 101, 242, 0.1);
+            border-radius: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .join-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .join-section p {
+            color: #8a8f9c;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .join-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .join-button {
+            padding: 15px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .join-discord {
+            background: #5865F2;
+            color: white;
+        }
+        
+        .join-discord:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        .join-copy {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+        }
+        
+        .join-copy:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+        
         /* Footer */
         .footer {
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -462,6 +521,15 @@
         
         .footer-links a:hover {
             color: #667eea;
+        }
+        
+        .invite-link {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #667eea;
+            margin-top: 10px;
         }
         
         /* Responsive */
@@ -760,7 +828,7 @@
                         <div class="embed-preview">
                             <strong>🎰 SLOT MACHINE</strong><br>
                             🍒 🍒 🍒<br>
-                            <span style="color: #4caf50;">JACKPOT! +$1,000</span>
+                            <span style="color: #4caf4f;">JACKPOT! +$1,000</span>
                         </div>
                     </div>
                 </div>
@@ -780,12 +848,28 @@
                         <li style="margin-bottom: 10px;">✓ 24/7 uptime</li>
                         <li style="margin-bottom: 10px;">✓ Regular updates & support</li>
                     </ul>
-                    
-                    <a href="https://discord.gg/GsHpSVcwTN" class="discord-btn" style="margin-top: 20px; width: 100%; justify-content: center;" target="_blank">
-                        <i class="fab fa-discord"></i>
-                        Join Our Discord Server
-                    </a>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Join Section -->
+        <section class="join-section">
+            <h2>Ready to Join?</h2>
+            <p>Click the button below to join our Discord community!</p>
+            
+            <div class="join-buttons">
+                <a href="https://discord.gg/GsHpSVcwTN" class="join-button join-discord" target="_blank">
+                    <i class="fab fa-discord"></i>
+                    Join Discord Server
+                </a>
+                <button class="join-button join-copy" onclick="copyInvite()">
+                    <i class="fas fa-copy"></i>
+                    Copy Invite Link
+                </button>
+            </div>
+            
+            <div class="invite-link" id="inviteLink">
+                discord.gg/GsHpSVcwTN
             </div>
         </section>
         
@@ -816,11 +900,11 @@
         </footer>
     </div>
     
-    <!-- Auto-redirect to Discord after 10 seconds (optional) -->
     <script>
-        setTimeout(() => {
-            window.location.href = "https://discord.gg/GsHpSVcwTN";
-        }, 10000);
+        function copyInvite() {
+            navigator.clipboard.writeText('https://discord.gg/GsHpSVcwTN');
+            alert('Invite link copied to clipboard!');
+        }
     </script>
 </body>
 </html>
