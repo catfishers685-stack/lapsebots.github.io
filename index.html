@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapse's Bots - Discord Bot Development</title>
+    <meta property="og:title" content="Lapse's Bots">
+    <meta property="og:description" content="Professional Discord Bot Development & Gambling Bots">
+    <meta property="og:image" content="https://i.imgur.com/placeholder.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0C10;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 0%, #1a1f2e, #0a0c10 50%);
+        }
+        
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1e2a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #5865F2;
+            border-radius: 5px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transform: rotate(10deg);
+            transition: transform 0.3s;
+        }
+        
+        .logo-icon:hover {
+            transform: rotate(0deg);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: #8a8f9c;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .discord-btn {
+            background: #5865F2;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #a0a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #9ba3b5;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.08);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #667eea;
+        }
+        
+        .hero-image {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .bot-preview {
+            background: #1a1e2a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .preview-header {
+            background: #232837;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-dots {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        
+        .preview-content {
+            padding: 20px;
+        }
+        
+        .command {
+            background: #232837;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+        
+        .command span {
+            color: #667eea;
+        }
+        
+        /* Features Section */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #fff, #a0a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #8a8f9c;
+        }
+        
+        /* Commands Showcase */
+        .commands-showcase {
+            background: rgba(255,255,255,0.02);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 80px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .command-category {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        .command-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .command-list {
+            list-style: none;
+        }
+        
+        .command-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .command-name {
+            font-weight: 600;
+            color: #fff;
+            min-width: 120px;
+        }
+        
+        .command-desc {
+            color: #8a8f9c;
+        }
+        
+        /* Chicken Modes */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .mode-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        
+        .mode-card:hover {
+            transform: scale(1.05);
+            border-color: #667eea;
+        }
+        
+        .mode-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .mode-easy { color: #4caf50; }
+        .mode-medium { color: #2196f3; }
+        .mode-hard { color: #ff9800; }
+        .mode-expert { color: #f44336; }
+        
+        /* Bot Preview Section */
+        .bot-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        
+        .bot-messages {
+            background: #1a1e2a;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .message {
+            padding: 15px;
+            border-bottom: 1px solid #232837;
+        }
+        
+        .message:last-child {
+            border-bottom: none;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .message-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .message-time {
+            font-size: 0.8rem;
+            color: #5d6478;
+        }
+        
+        .message-content {
+            color: #fff;
+        }
+        
+        .embed-preview {
+            background: #232837;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 0;
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .footer-section h4 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #8a8f9c;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content p {
+                margin: 0 auto 30px;
+            }
+            
+            .stats-grid {
+                justify-content: center;
+            }
+            
+            .features-grid,
+            .modes-grid,
+            .commands-grid,
+            .bot-showcase,
+            .footer {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .glow {
+            position: relative;
+        }
+        
+        .glow::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .glow:hover::after {
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Lapse's Bots</h1>
+                    <p>Discord Bot Development</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#features" style="color: #fff; text-decoration: none;">Features</a>
+                <a href="#commands" style="color: #fff; text-decoration: none;">Commands</a>
+                <a href="#showcase" style="color: #fff; text-decoration: none;">Showcase</a>
+                <a href="https://discord.gg/GsHpSVcwTN" class="discord-btn" target="_blank">
+                    <i class="fab fa-discord"></i>
+                    Join Server
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Professional Discord<br>Bot Development</h2>
+                <p>We create high-quality, custom Discord bots with advanced features, games, and economy systems. Join our community of developers and bot enthusiasts!</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div>Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1K+</div>
+                        <div>Commands</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div>Custom</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center;">
+                    <a href="https://discord.gg/GsHpSVcwTN" class="discord-btn" style="background: #5865F2;" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        Join Discord
+                    </a>
+                    <a href="#features" style="background: rgba(255,255,255,0.1); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-chevron-down"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-image floating">
+                <div class="bot-preview">
+                    <div class="preview-header">
+                        <div class="preview-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span style="color: #8a8f9c; margin-left: 10px;">Lapse's Gambling Bot</span>
+                    </div>
+                    <div class="preview-content">
+                        <div class="command">
+                            <span>$</span>bal <span style="color: #8a8f9c;">→ Balance: $1,000</span>
+                        </div>
+                        <div class="command">
+                            <span>$</span>slots 100 <span style="color: #8a8f9c;">→ 🍒 🍒 🍒 JACKPOT! +$1,000</span>
+                        </div>
+                        <div class="command">
+                            <span>$</span>chicken hard 100 <span style="color: #8a8f9c;">→ Crossed 7 lanes! +$800</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features">
+            <h2 class="section-title">Why Choose Our Bots?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card glow">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized code with 24/7 uptime and instant response times. No delays, no downtime.</p>
+                </div>
+                
+                <div class="feature-card glow">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Multiple Games</h3>
+                    <p>Slots, Blackjack, Chicken Game, Coinflip, and more! Regular updates with new games.</p>
+                </div>
+                
+                <div class="feature-card glow">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Economy System</h3>
+                    <p>Full economy with balances, leaderboards, daily rewards, and player trading.</p>
+                </div>
+                
+                <div class="feature-card glow">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Advanced error handling, data persistence, and anti-cheat systems.</p>
+                </div>
+                
+                <div class="feature-card glow">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Admin Tools</h3>
+                    <p>Powerful moderation and management commands for server owners.</p>
+                </div>
+                
+                <div class="feature-card glow">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Custom Development</h3>
+                    <p>Need something specific? We create custom bots tailored to your needs.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Commands Showcase -->
+        <section id="commands" class="commands-showcase">
+            <h2 class="section-title" style="margin-bottom: 30px;">Bot Commands</h2>
+            
+            <div class="commands-grid">
+                <div class="command-category">
+                    <h3><i class="fas fa-coins" style="margin-right: 10px;"></i> Economy</h3>
+                    <ul class="command-list">
+                        <li><span class="command-name">$bal</span> <span class="command-desc">Check your balance</span></li>
+                        <li><span class="command-name">$lb</span> <span class="command-desc">View leaderboard</span></li>
+                        <li><span class="command-name">$daily</span> <span class="command-desc">Claim $500 daily</span></li>
+                        <li><span class="command-name">$give</span> <span class="command-desc">Send money to users</span></li>
+                    </ul>
+                </div>
+                
+                <div class="command-category">
+                    <h3><i class="fas fa-dice" style="margin-right: 10px;"></i> Games</h3>
+                    <ul class="command-list">
+                        <li><span class="command-name">$slots</span> <span class="command-desc">Play slot machine</span></li>
+                        <li><span class="command-name">$flip</span> <span class="command-desc">Coin flip game</span></li>
+                        <li><span class="command-name">$bj</span> <span class="command-desc">Blackjack</span></li>
+                        <li><span class="command-name">$chicken</span> <span class="command-desc">Cross the road</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 style="margin: 40px 0 20px; text-align: center;">Chicken Game Difficulties</h3>
+            
+            <div class="modes-grid">
+                <div class="mode-card">
+                    <div class="mode-name mode-easy">🐔 EASY</div>
+                    <div>5 Lanes</div>
+                    <div>85% Success</div>
+                    <div>0.4x per lane</div>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-name mode-medium">🐓 MEDIUM</div>
+                    <div>7 Lanes</div>
+                    <div>75% Success</div>
+                    <div>0.6x per lane</div>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-name mode-hard">🦃 HARD</div>
+                    <div>9 Lanes</div>
+                    <div>65% Success</div>
+                    <div>0.8x per lane</div>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-name mode-expert">🦅 EXPERT</div>
+                    <div>12 Lanes</div>
+                    <div>50% Success</div>
+                    <div>1.2x per lane</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bot Showcase -->
+        <section id="showcase" class="bot-showcase">
+            <div class="bot-messages">
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-author">User</span>
+                        <span class="message-time">Today at 11:43 AM</span>
+                    </div>
+                    <div class="message-content">$chicken hard 100</div>
+                </div>
+                
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-author">Lapse's Gambling Bot</span>
+                        <span class="message-time">Now</span>
+                    </div>
+                    <div class="message-content">
+                        <div class="embed-preview">
+                            <strong>🐔 CHICKEN - HARD</strong><br>
+                            ✅ Crossed to lane 3!<br>
+                            Current Value: $240<br>
+                            Next Lane: 62% chance
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-author">User</span>
+                        <span class="message-time">Today at 11:45 AM</span>
+                    </div>
+                    <div class="message-content">$slots 100</div>
+                </div>
+                
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-author">Lapse's Gambling Bot</span>
+                        <span class="message-time">Now</span>
+                    </div>
+                    <div class="message-content">
+                        <div class="embed-preview">
+                            <strong>🎰 SLOT MACHINE</strong><br>
+                            🍒 🍒 🍒<br>
+                            <span style="color: #4caf50;">JACKPOT! +$1,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 style="font-size: 2rem; margin-bottom: 20px;">Experience the <span style="color: #667eea;">Ultimate</span> Gambling Bot</h2>
+                <p style="color: #8a8f9c; margin-bottom: 30px;">Join our Discord server to test the bot yourself! With fully functional economy, multiple games, and regular updates, it's the perfect addition to any server.</p>
+                
+                <div style="background: rgba(255,255,255,0.03); border-radius: 15px; padding: 25px;">
+                    <h3 style="margin-bottom: 15px;">✨ Features Include:</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;">✓ Fully functional gambling bot</li>
+                        <li style="margin-bottom: 10px;">✓ Persistent economy system</li>
+                        <li style="margin-bottom: 10px;">✓ Multiple difficulty modes</li>
+                        <li style="margin-bottom: 10px;">✓ Admin/Botmaker commands</li>
+                        <li style="margin-bottom: 10px;">✓ 24/7 uptime</li>
+                        <li style="margin-bottom: 10px;">✓ Regular updates & support</li>
+                    </ul>
+                    
+                    <a href="https://discord.gg/GsHpSVcwTN" class="discord-btn" style="margin-top: 20px; width: 100%; justify-content: center;" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        Join Our Discord Server
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-section">
+                <h4>Lapse's Bots</h4>
+                <p style="color: #8a8f9c;">Professional Discord bot development and custom solutions.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#commands">Commands</a></li>
+                    <li><a href="#showcase">Showcase</a></li>
+                    <li><a href="https://discord.gg/GsHpSVcwTN">Discord</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><i class="fab fa-discord" style="margin-right: 10px;"></i> Discord: Lapse.</li>
+                    <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> Discord Server</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Auto-redirect to Discord after 10 seconds (optional) -->
+    <script>
+        setTimeout(() => {
+            window.location.href = "https://discord.gg/GsHpSVcwTN";
+        }, 10000);
+    </script>
+</body>
+</html>
